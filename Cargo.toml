@@ -9,7 +9,7 @@ name = "libpyextend"
 crate-type = ["cdylib"]
 
 [dependencies]
-webbrowser = "*"
+webbrowser = "0.4.0"
 
 [dependencies.cpython]
 version = "0.2"
