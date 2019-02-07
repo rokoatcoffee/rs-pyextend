@@ -1,0 +1,15 @@
+#vscode
+.vscode
+
+#rust
+/target
+**/*.rs.bk
+Cargo.lock
+
+#python
+.benchmarks
+__pycache__
+.pytest_cache
+
+#build lib
+libpyextend.*
