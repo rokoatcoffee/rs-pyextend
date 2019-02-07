@@ -1,0 +1,12 @@
+[package]
+name = "rs-pyextend"
+version = "0.1.0"
+authors = ["roko@summer <roko.mislov.m@gmail.com>"]
+
+[lib]
+name = "libpyextended"
+crate-type = ["cdylib"]
+
+[dependencies.cpython]
+version = "0.2"
+features = ["extension-module"]
