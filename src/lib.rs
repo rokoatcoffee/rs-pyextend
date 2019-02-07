@@ -15,8 +15,8 @@ fn palindrom(_py: Python, sentence: String) -> PyResult<bool> {
     Ok(true)
 }
 
-py_module_initializer!(libpyextended, initlibpyextended, PyInit_libpyextended, |py, m | {
-    m.add(py, "libpyextended", py_fn!(py, palindrom(sentence: String)))?;
+py_module_initializer!(libpyextend, initlibpyextend, PyInit_libpyextend, |py, m | {
+    m.add(py, "palindrom", py_fn!(py, palindrom(sentence: String)))?;
     m.add(py, "__doc__", "Function to check if a string is a palindrom. Returns a boolean.")?;
     Ok(())
 });
