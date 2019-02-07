@@ -6,7 +6,7 @@ import libpyextend as pyext
 """
 Pure Python version of the palindrom function.
 """
-def py_palindrom(sentence: str) -> bool:
+def py_palindrome(sentence: str) -> bool:
     sentence = list(sentence.replace(" ", "").lower())
     size = len(sentence)
 
@@ -20,10 +20,10 @@ def py_palindrom(sentence: str) -> bool:
 sentance = "a" * 5000 + "b" + "a" * 5000
 
 def test_py(benchmark):
-    benchmark(py_palindrom, sentance)
+    benchmark(py_palindrome, sentance)
 
 def test_rs(benchmark):
-    benchmark(pyext.palindrom, sentance)
+    benchmark(pyext.palindrome, sentance)
 
 
 if __name__ == "__main__":

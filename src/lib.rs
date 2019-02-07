@@ -10,7 +10,7 @@ fn antigravity(_py: Python) -> PyResult<bool> {
     Ok(true)
 }
 
-fn palindrom(_py: Python, sentence: String) -> PyResult<bool> {
+fn palindrome(_py: Python, sentence: String) -> PyResult<bool> {
     let chars:Vec<char> = sentence.replace(" ", "").to_lowercase().chars().collect();
     let size:usize = chars.len();
 
@@ -23,7 +23,7 @@ fn palindrom(_py: Python, sentence: String) -> PyResult<bool> {
 }
 
 py_module_initializer!(libpyextend, initlibpyextend, PyInit_libpyextend, |py, m | {
-    m.add(py, "palindrom", py_fn!(py, palindrom(sentence: String)))?;
+    m.add(py, "palindrome", py_fn!(py, palindrom(sentence: String)))?;
     m.add(py, "antigravity", py_fn!(py, antigravity()))?;
     m.add(py, "__doc__", "Python extensions written in Rust, using cpython bindings.")?;
     Ok(())
