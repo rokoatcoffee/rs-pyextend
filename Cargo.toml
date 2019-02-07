@@ -2,3 +2,7 @@
 name = "rs-pyextend"
 version = "0.1.0"
 authors = ["roko@summer <roko.mislov.m@gmail.com>"]
+cargo-features = ["nightly"]
+
+[dependencies]
+webbrowser = "*"
