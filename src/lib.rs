@@ -1,7 +1,14 @@
 #[macro_use]
 extern crate cpython;
 
+extern crate webbrowser;
+
 use cpython::{Python, PyResult};
+
+fn antigravity(_py: Python) -> PyResult<bool> {
+    webbrowser::open("https://xkcd.com/353/");
+    Ok(true)
+}
 
 fn palindrom(_py: Python, sentence: String) -> PyResult<bool> {
     let chars:Vec<char> = sentence.replace(" ", "").to_lowercase().chars().collect();
@@ -17,6 +24,7 @@ fn palindrom(_py: Python, sentence: String) -> PyResult<bool> {
 
 py_module_initializer!(libpyextend, initlibpyextend, PyInit_libpyextend, |py, m | {
     m.add(py, "palindrom", py_fn!(py, palindrom(sentence: String)))?;
-    m.add(py, "__doc__", "Function to check if a string is a palindrom. Returns a boolean.")?;
+    m.add(py, "antigravity", py_fn!(py, antigravity()))?;
+    m.add(py, "__doc__", "Python extensions written in Rust, using cpython bindings.")?;
     Ok(())
 });
