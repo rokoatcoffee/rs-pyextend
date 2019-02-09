@@ -6,8 +6,11 @@ extern crate webbrowser;
 use cpython::{Python, PyResult};
 
 fn antigravity(_py: Python) -> PyResult<bool> {
-    webbrowser::open("https://xkcd.com/353/");
-    Ok(true)
+    if webbrowser::open("https://xkcd.com/353/").is_ok() {
+        Ok(true)
+    } else {
+        Ok(false)
+    }
 }
 
 fn palindrome(_py: Python, sentence: String) -> PyResult<bool> {
@@ -23,7 +26,7 @@ fn palindrome(_py: Python, sentence: String) -> PyResult<bool> {
 }
 
 py_module_initializer!(libpyextend, initlibpyextend, PyInit_libpyextend, |py, m | {
-    m.add(py, "palindrome", py_fn!(py, palindrom(sentence: String)))?;
+    m.add(py, "palindrome", py_fn!(py, palindrome(sentence: String)))?;
     m.add(py, "antigravity", py_fn!(py, antigravity()))?;
     m.add(py, "__doc__", "Python extensions written in Rust, using cpython bindings.")?;
     Ok(())
