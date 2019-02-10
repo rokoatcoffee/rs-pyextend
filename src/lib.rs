@@ -1,10 +1,12 @@
 extern crate webbrowser;
 
+#[allow(dead_code)]
 fn antigravity() -> () {
     webbrowser::open("https://xkcd.com/353/").is_ok();
 }
 
-fn palindrom(sentence: String) -> bool {
+#[allow(dead_code)]
+fn palindrom(sentence: &String) -> bool {
     let chars:Vec<char> = sentence.replace(" ", "").to_lowercase().chars().collect();
     let size:usize = chars.len();
 
@@ -16,6 +18,7 @@ fn palindrom(sentence: String) -> bool {
     true
 }
 
+#[allow(dead_code)]
 fn permutate(word: &String) -> Vec<String> {
     let r: usize = word.len();
     let mut all: Vec<String> = Vec::new();
@@ -27,7 +30,7 @@ fn permutate(word: &String) -> Vec<String> {
 }
 
 fn permute(all: &mut  Vec<String>, c: &mut Vec<char>, l: usize, r: usize){ 
-   if (l == r) {
+   if l == r {
        all.push(c.clone().iter().collect());
    }
    else
@@ -44,8 +47,8 @@ fn permute(all: &mut  Vec<String>, c: &mut Vec<char>, l: usize, r: usize){
 mod tests {
     #[test]
     fn is_palindrom() {
-        assert_eq!(super::palindrom(String::from("aabbaa")), true);
-        assert_eq!(super::palindrom(String::from("aabcaa")), false);
+        assert_eq!(super::palindrom(&String::from("aabbaa")), true);
+        assert_eq!(super::palindrom(&String::from("aabcaa")), false);
     }
 
     #[test]
