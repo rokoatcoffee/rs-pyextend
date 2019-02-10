@@ -2,6 +2,10 @@
 
 # -- dependencies --
 import libpyextend as pyext
+from itertools import permutations
+
+
+# -- python implementation --
 
 """
 Pure Python version of the palindrom function.
@@ -17,13 +21,29 @@ def py_palindrome(sentence: str) -> bool:
     return True
 
 
-sentance = "a" * 5000 + "b" + "a" * 5000
+"""
+Python itertools implmentation of permutations.
+"""
+def py_permutate(word: str) -> list:
+    return [''.join(x) for x in permutations(word)]
 
-def test_py(benchmark):
+
+# -- benchmark test --
+
+sentance = "a" * 5000 + "b" + "a" * 5000
+word = "abcdef"
+
+def test_py_palindrome(benchmark):
     benchmark(py_palindrome, sentance)
 
-def test_rs(benchmark):
+def test_rs_palindrome(benchmark):
     benchmark(pyext.palindrome, sentance)
+
+def test_py_permutation(benchmark):
+    benchmark(py_permutate, word)
+
+def test_rs_permutation(benchmark):
+    benchmark(pyext.permutation, word)
 
 
 if __name__ == "__main__":

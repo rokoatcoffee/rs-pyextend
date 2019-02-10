@@ -25,9 +25,34 @@ fn palindrome(_py: Python, sentence: String) -> PyResult<bool> {
     Ok(true)
 }
 
+fn permutation(_py: Python, word: String) -> PyResult<Vec<String>> {
+    let r: usize = word.len();
+    let mut all: Vec<String> = Vec::new();
+    let mut chars: Vec<char> = word.chars().collect();
+
+    permute(&mut all, &mut chars, 0 , r);
+    
+    Ok(all)
+}
+
+fn permute(all: &mut  Vec<String>, c: &mut Vec<char>, l: usize, r: usize){ 
+   if l == r {
+       all.push(c.clone().iter().collect());
+   }
+   else
+   { 
+       for i in l..r {
+           c.swap(l, i);
+           permute(all, c, l + 1, r);
+           c.swap(l, i);
+       }
+   } 
+}
+
 py_module_initializer!(libpyextend, initlibpyextend, PyInit_libpyextend, |py, m | {
     m.add(py, "palindrome", py_fn!(py, palindrome(sentence: String)))?;
     m.add(py, "antigravity", py_fn!(py, antigravity()))?;
+    m.add(py, "permutation", py_fn!(py, permutation(word: String)))?;
     m.add(py, "__doc__", "Python extensions written in Rust, using cpython bindings.")?;
     Ok(())
 });
