@@ -43,6 +43,14 @@ fn permute(all: &mut  Vec<String>, c: &mut Vec<char>, l: usize, r: usize){
    } 
 }
 
+#[allow(dead_code)]
+fn change_endian(arr: &mut [u8]) {
+    let l = arr.len();
+    for i in 0..(arr.len() / 2) {
+        arr.swap(i, l - i - 1)
+    }
+}
+
 #[cfg(test)]
 mod tests {
     #[test]
@@ -60,5 +68,17 @@ mod tests {
     #[test]
     fn antigravity(){
         super::antigravity();
+    }
+
+    #[test]
+    fn endian_changed() 
+    {
+        let mut odd : [u8; 3] = [0xFF, 0xEE, 0xDD];
+        let mut even : [u8; 4] = [0xFF, 0xEE, 0xDD, 0xCC];
+        super::change_endian(&mut odd[..]);
+        super::change_endian(&mut even[..]);
+        
+        assert_eq!(&[0xDD, 0xEE, 0xFF], &odd);
+        assert_eq!(&[0xCC, 0xDD, 0xEE, 0xFF], &even);
     }
 }
