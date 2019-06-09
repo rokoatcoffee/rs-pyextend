@@ -1,9 +1,30 @@
 extern crate webbrowser;
+extern crate rand;
+use rand::Rng;
 
 #[allow(dead_code)]
 fn antigravity() -> () {
     webbrowser::open("https://xkcd.com/353/").is_ok();
 }
+
+#[allow(dead_code)]
+pub fn approx_pi() -> f32 {
+    let mut in_a_circle : f32 = 0.0;
+    let in_a_square : f32 = 1_000_000.0;
+
+    for _ in 0..in_a_square as i32 {
+        
+        let x : f32 = rand::thread_rng().gen_range(0.0, 1.0);
+        let y : f32 = rand::thread_rng().gen_range(0.0, 1.0);
+        
+        if x.powf(2.0) + y.powf(2.0) <= 1.0 {
+            in_a_circle += 4.0;
+        }
+    }
+    
+    return in_a_circle / in_a_square;
+}
+
 
 #[allow(dead_code)]
 fn palindrom(sentence: &String) -> bool {
@@ -68,6 +89,14 @@ mod tests {
     #[test]
     fn antigravity(){
         super::antigravity();
+    }
+
+    #[test]
+    fn approx_pi(){
+        let pi = super::approx_pi();
+        let diff = (pi - std::f32::consts::PI).abs();
+
+        assert!(diff < 0.02);
     }
 
     #[test]

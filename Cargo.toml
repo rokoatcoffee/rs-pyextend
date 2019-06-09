@@ -6,3 +6,4 @@ cargo-features = ["nightly"]
 
 [dependencies]
 webbrowser = "*"
+rand = "*"
